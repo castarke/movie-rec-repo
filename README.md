@@ -19,6 +19,7 @@ Year of release
 Keanu/no keanu
 locations of filming/setting (tie in with maps api)
 movie budget (indie, blockbuster)
+Oscars
 
 ### SEARCH FUNCTION
 
