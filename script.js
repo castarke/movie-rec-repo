@@ -20,5 +20,3 @@ var searchBtn = document.getElementById('search-button');
         event.preventDefault();
         getAPI();
       });
-        
-    
