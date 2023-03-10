@@ -2,14 +2,14 @@
 var searchBtn = document.querySelector('#search-button');
 var firstName = document.querySelector('#actor-search-FN');
 var lastName = document.querySelector('#actor-search-LN');
-var previousActorArray = JSON.parse(localStorage.getItem('PreviousActors')) || [];
+var previousActorArray = JSON.parse(localStorage.getItem('Previous Searched Actors')) || [];
 var movieArray =[];
 var idArray=[];
 var castArray=[];
 var m = 0;
 var c=0;
 var nameid;
-
+var searchHistory = document.getElementById("search-history-item")
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -18,15 +18,34 @@ var actorChoice = function (event) {
   
   console.log('this is my actor choice:', actorChoice);
 
-
+// will not save to local storage is name is already entered
   if (!previousActorArray.includes(actorChoice)) {
     previousActorArray.push(actorChoice);
     localStorage.setItem('Previous Searched Actors', JSON.stringify(previousActorArray));
+    // runs search history so the history doesn't only show up when page is reloaded
+    $("#showingResults").text("Showing Current Results for " + decodeURIComponent(actorChoice)); //Need to fix this so it will fix displayed actors when switching back and to a different previously searched actor
+    createSearchHistory();
   }
-
   fetchActorInfo(actorChoice);
   getactorid(actorChoice);
 }
+
+// creating a search history that has clickable actor names
+function createSearchHistory() {
+  searchHistory.innerHTML = "";
+  previousActorArray.forEach(actor => {
+    var newActor = document.createElement("button");
+    newActor.classList.add("search-history-item", "btn-group");
+    newActor.textContent = decodeURIComponent(actor);
+    newActor.addEventListener("click", () => {
+      fetchActorInfo(actor);
+      getactorid(actor);
+    });
+    searchHistory.appendChild(newActor);
+  });
+}
+
+createSearchHistory();
 
 function fetchActorInfo(actor) {
   
