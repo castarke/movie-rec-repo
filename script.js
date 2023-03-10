@@ -3,6 +3,8 @@ var searchBtn = document.querySelector('#search-button');
 var firstName = document.querySelector('#actor-search-FN');
 var lastName = document.querySelector('#actor-search-LN');
 var previousActorArray = JSON.parse(localStorage.getItem('PreviousActors')) || [];
+var movieArray =[]
+var m = 0;
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -46,40 +48,32 @@ function fetchActorInfo(actor) {
       .then(function(filmList) {
 
         for (var i = 0; i < filmList.cast[i].original_title.length; i++) {
-
+          movieArray.push(filmList.cast[i].original_title);
           console.log('the actor was in this film:', filmList.cast[i].original_title);
+          getAPI();
+          m++;
         }
       })
+    }) 
 
-      // var actorBio = 'https://api.themoviedb.org/3/person/' + idNumber + '?api_key=259f0ac86de32db902f004c2142dde73&append_to_response=movies'
-      // fetch(actorBio)
-      // .then(function (response) {
-      //   return response.json();
-      // })
+     
 
-      // .then(function(actorDetails) {
-      //   console.log(actorDetails);
-      // })
-    })  
+
+     
+     
 }
 
 searchBtn.addEventListener('click', actorChoice);
          
-  //        function getAPI(){
-  //         var titlename = title.val();
-         
-  //        var watchmodeUrl = 'https://api.watchmode.com/v1/search/?apiKey=iFKylfiC00oJqw4wYLbiOn1fBNMNabxVwSBGNmaR&search_field=name&search_value=' +titlename;
-  //        fetch(watchmodeUrl)
-         
-  //        .then(function (response) {
-  //          return response.json();
-  //        })
-  //        .then(function (data) {
-  //  console.log(data);
-  //      })
-  //     };
 
-  //     searchBtn.addEventListener("click",function(){
-  //       event.preventDefault();
-  //       getAPI();
-  //     });
+function getAPI(){
+  var providerfile = 'https://api.watchmode.com/v1/search/?apiKey=iFKylfiC00oJqw4wYLbiOn1fBNMNabxVwSBGNmaR&search_field=name&search_value='+ movieArray[m]; //, options)
+	fetch(providerfile)
+  .then(function (response) {
+    return response.json();
+    })
+
+    .then(function(providers) {
+
+      console.log(providers);
+    })}
