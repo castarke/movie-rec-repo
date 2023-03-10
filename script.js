@@ -3,8 +3,13 @@ var searchBtn = document.querySelector('#search-button');
 var firstName = document.querySelector('#actor-search-FN');
 var lastName = document.querySelector('#actor-search-LN');
 var previousActorArray = JSON.parse(localStorage.getItem('PreviousActors')) || [];
-var movieArray =[]
+var movieArray =[];
+var idArray=[];
+var castArray=[];
 var m = 0;
+var c=0;
+var nameid;
+
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -20,7 +25,7 @@ var actorChoice = function (event) {
   }
 
   fetchActorInfo(actorChoice);
-
+  getactorid(actorChoice);
 }
 
 function fetchActorInfo(actor) {
@@ -53,6 +58,7 @@ function fetchActorInfo(actor) {
           getAPI();
           m++;
         }
+        
       })
     }) 
 
@@ -64,16 +70,56 @@ function fetchActorInfo(actor) {
 }
 
 searchBtn.addEventListener('click', actorChoice);
+
+
+//We need to use watchmode to get the actor id then, search for movies using id, then get streaming services, then use movietmdb to get posters for movies
+
          
 
 function getAPI(){
-  var providerfile = 'https://api.watchmode.com/v1/search/?apiKey=iFKylfiC00oJqw4wYLbiOn1fBNMNabxVwSBGNmaR&search_field=name&search_value='+ movieArray[m]; //, options)
+  var providerfile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value='+ movieArray[m]; //, options)
 	fetch(providerfile)
   .then(function (response) {
     return response.json();
     })
-
+    
     .then(function(providers) {
-
-      console.log(providers);
+      for(var v=0; v<providers.title_results.length;v++){
+        idArray.push(providers.title_results[v].id);
+      console.log(providers.title_results[v].id);
+      getCast();
+      c++;
+      }
     })}
+
+    // function getCast(){
+    //   var castfile ='https://api.watchmode.com/v1/title/'+idArray[c]+'/cast-crew/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru'
+    //   fetch(castfile)
+    //   .then(function (response){
+    //     return response.json();
+    //   })
+
+    //   .then(function(cast){
+    //     for(var d=0; d<cast.length;d++){
+    //       castArray.push(cast[d].person_id)
+    //     if(castArray[d]===namieid)  {
+
+    //     }
+    //     }
+        
+    //     console.log(cast);
+    //   })
+    // }
+
+      function getactorid(actorvalue){
+      var actoridfile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value=' + actorvalue;
+      fetch(actoridfile)
+      .then(function (response){
+        return response.json();
+      })
+
+      .then(function(actorid){
+        nameid=actorid.people_results[0].id;
+        console.log(actorid.people_results[0].id);
+      })
+    }
