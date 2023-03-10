@@ -10,6 +10,7 @@ var m = 0;
 var c=0;
 var nameid;
 var searchHistory = document.getElementById("search-history-item")
+var streamingChoices= []
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -49,7 +50,7 @@ createSearchHistory();
 
 function fetchActorInfo(actor) {
   
-  var actorFile = 'https://api.themoviedb.org/3/search/person?api_key=259f0ac86de32db902f004c2142dde73&language=en-US&query=' + actor + '&page=1&include_adult=false'; //, options)
+  var actorFile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value='+ actor; //, options)
 	fetch(actorFile)
   .then(function (response) {
     return response.json();
@@ -59,24 +60,31 @@ function fetchActorInfo(actor) {
 
       console.log(actorID);
       
-      var idNumber = actorID.results[0].id;
+      var idNumber = actorID.people_results[0].tmdb_id;
       
       console.log('this is the actor id #:', idNumber);
 
-      var film = 'https://api.themoviedb.org/3/person/' + idNumber + '/combined_credits?api_key=259f0ac86de32db902f004c2142dde73&language=en-US'
+      var film = 'https://api.themoviedb.org/3/person/' + idNumber + '/movie_credits?api_key=259f0ac86de32db902f004c2142dde73&language=en-US'
       fetch(film)
       .then(function (response) {
         return response.json();
       })
 
       .then(function(filmList) {
+        movieArray = []
+        console.log(filmList)
+        
 
-        for (var i = 0; i < filmList.cast[i].original_title.length; i++) {
+        /*for (var i = 0; i < filmList.cast[i].original_title.length; i++) {
+          
           movieArray.push(filmList.cast[i].original_title);
           console.log('the actor was in this film:', filmList.cast[i].original_title);
-          getAPI();
+          
+         getmovieID();
+          
+          
           m++;
-        }
+        }*/
         
       })
     }) 
@@ -87,15 +95,33 @@ function fetchActorInfo(actor) {
      
      
 }
+function getmovieID(){
+  
+  for (i=0; i < movieArray.length; i++)
+  movieArray[i].replace (' ','%20')
+var titleID ="https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=title&search_value=Se7en"
+
+fetch(titleID)
+.then(function (response) {
+  return response.json();
+})
+
+.then(function(filmIDList) {
+
+  console.log(filmIDList)})}
 
 searchBtn.addEventListener('click', actorChoice);
 
 
 //We need to use watchmode to get the actor id then, search for movies using id, then get streaming services, then use movietmdb to get posters for movies
 
-         
+function getStreaming(){
+  var titleStreaming = 'https://api.watchmode.com/v1/title/' + titleID + '/sources/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru'
+  fetch(streaming)
 
-function getAPI(){
+}         
+
+/*function getAPI(){
   var providerfile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value='+ movieArray[m]; //, options)
 	fetch(providerfile)
   .then(function (response) {
@@ -103,18 +129,19 @@ function getAPI(){
     })
     
     .then(function(providers) {
+      console.log(providers)
       for(var v=0; v<providers.title_results.length;v++){
         idArray.push(providers.title_results[v].id);
       console.log(providers.title_results[v].id);
-      getCast();
+      checkCast();
       c++;
       }
     })}
 
-    // function getCast(){
-    //   var castfile ='https://api.watchmode.com/v1/title/'+idArray[c]+'/cast-crew/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru'
-    //   fetch(castfile)
-    //   .then(function (response){
+    function checkCast(){
+      var castfile ='https://api.watchmode.com/v1/title/'+idArray[c]+'/cast-crew/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru'
+       fetch(castfile)
+       .then(function (response){
     //     return response.json();
     //   })
 
@@ -141,4 +168,4 @@ function getAPI(){
         nameid=actorid.people_results[0].id;
         console.log(actorid.people_results[0].id);
       })
-    }
+    }*/
