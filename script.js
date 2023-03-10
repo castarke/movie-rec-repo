@@ -3,6 +3,8 @@ var searchBtn = document.querySelector('#search-button');
 var firstName = document.querySelector('#actor-search-FN');
 var lastName = document.querySelector('#actor-search-LN');
 var previousActorArray = JSON.parse(localStorage.getItem('PreviousActors')) || [];
+var movieArray =[]
+var m = 0;
 
 var actorChoice = function (event) {
   event.preventDefault();
