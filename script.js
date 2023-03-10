@@ -2,8 +2,7 @@
 var searchBtn = document.querySelector('#search-button');
 var firstName = document.querySelector('#actor-search-FN');
 var lastName = document.querySelector('#actor-search-LN');
-var movieArray =[];
-var m = 0;
+var previousActorArray = JSON.parse(localStorage.getItem('PreviousActors')) || [];
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -11,9 +10,15 @@ var actorChoice = function (event) {
   var actorChoice = encodeURIComponent(firstName.value + ' ' + lastName.value);
   
   console.log('this is my actor choice:', actorChoice);
-  
+
+
+  if (!previousActorArray.includes(actorChoice)) {
+    previousActorArray.push(actorChoice);
+    localStorage.setItem('Previous Searched Actors', JSON.stringify(previousActorArray));
+  }
+
   fetchActorInfo(actorChoice);
-  
+
 }
 
 function fetchActorInfo(actor) {
