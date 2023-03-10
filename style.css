@@ -1,3 +1,60 @@
 body {
     background-color: cadetblue;
 }
+main {
+    margin-right: 200px;
+}
+.saved-sidebar {
+    position: fixed;
+    padding-left: 15px;
+    top: 0;
+    right: 0;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    height: 95%;
+    width: 200px;
+    background-color: burlywood;
+}
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    overflow: auto;
+    padding-right: 200px;
+}
+  
+.movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: burlywood;
+}
+.movie-item:hover {
+    cursor: pointer;
+    background-color: indianred;
+    transition: 150ms;
+}
+  
+.movie-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+  
+.movie-info {
+    text-align: center;
+}
+
+.btn-group {
+    display: block;
+    background-color: burlywood;
+    margin-bottom: 5px;
+}
+
+.btn-group:hover {
+    cursor: pointer;
+    background-color: indianred;
+    transition: 150ms;
+}
