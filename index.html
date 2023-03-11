@@ -11,8 +11,6 @@
     
 </head>
 <body>
-
-</div>
     <header class="title">This is our movie app</header>
     <div class="main">
         <div class="main 1">
@@ -23,36 +21,36 @@
                     <!-- <textarea class="title-input form-control search-input"placeholder="Actor" aria-label="Actor"></textarea> -->
                     <table id="check-table">
                       <tr>                      
-                        <input class="checkbox" type="checkbox" id="Netflix" name="Netflix" value="203">
-                        <label for="Netflix"> Netflix</label><br>
+                        <input class="checkbox" type="checkbox" id="Netflix" name="Netflix" value="203" class="form-check-input">
+                        <label for="Netflix" class="form-check-label"> Netflix</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="Hulu" name="Hulu" value="157">
-                        <label for="Hulu">Hulu</label><br>
+                        <input class="checkbox" type="checkbox" id="Hulu" name="Hulu" value="157" class="form-check-input">
+                        <label for="Hulu" class="form-check-label">Hulu</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="AmazonPrime" name="AmazonPrime" value="26">
-                        <label for="AmazonPrime">Amazon Prime</label><br>
+                        <input class="checkbox" type="checkbox" id="AmazonPrime" name="AmazonPrime" value="26" class="form-check-input">
+                        <label for="AmazonPrime" class="form-check-label">Amazon Prime</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="Disney" name="Disney" value="372">
-                        <label for="Disney">Disney+</label><br>
+                        <input class="checkbox" type="checkbox" id="Disney" name="Disney" value="372" class="form-check-input">
+                        <label for="Disney" class="form-check-label">Disney+</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="HBOMAX" name="HBOMAX" value="387">
-                        <label for="HBOMAX">HBO MAX</label><br>
+                        <input class="checkbox" type="checkbox" id="HBOMAX" name="HBOMAX" value="387" class="form-check-input">
+                        <label for="HBOMAX" class="form-check-label">HBO MAX</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="Paramount" name="Paramount" value="444">
-                        <label for="Paramount">Paramount+</label><br>
+                        <input class="checkbox" type="checkbox" id="Paramount" name="Paramount" value="444" class="form-check-input">
+                        <label for="Paramount" class="form-check-label">Paramount+</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="Peacock" name="Peacock" value="389">
-                        <label for="Peacock">Peacock</label><br>
+                        <input class="checkbox" type="checkbox" id="Peacock" name="Peacock" value="389" class="form-check-input">
+                        <label for="Peacock" class="form-check-label">Peacock</label><br>
                       </tr>
                       <tr>
-                        <input class="checkbox" type="checkbox" id="Crunchyroll" name="Crunchyroll" value="80">
-                        <label for="Crunchyroll">Crunchyroll</label><br>
+                        <input class="checkbox" type="checkbox" id="Crunchyroll" name="Crunchyroll" value="80" class="form-check-input">
+                        <label for="Crunchyroll" class="form-check-label">Crunchyroll</label><br>
                       </tr>
                       <input id="actor-search" type="text" placeholder="Actor's Name" name="Name">
                     <button id="search-button">Search</button>
@@ -64,16 +62,22 @@
                 <h3 class="Previously-Searched">Previously Searched Actors</h3>
                 <div id="search-history-item">
                    
-                  </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="list-group">
+    <div class="list-group text-center">
       <h3>Save Movies Here!</h3>
-      <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+      <a href="#" class="list-group-item list-group-item-action text-center">A saved movie here</a>
     </div>
     <h2 class="showingResults" id="showingResults">Showing Results for ... </h2>
-    <div class="card-group"></div>
+    <br>
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3"></div>
+        <div class="card-group"></div>
+
+      </div>
+    </div>
     <!-- <div class="movie-list"> -->
       <!-- <div class="movie-item">
         <img src="https://i.ebayimg.com/images/g/5YEAAOSwkepZipxQ/s-l500.jpg" class="movie-img" alt="poster1">
