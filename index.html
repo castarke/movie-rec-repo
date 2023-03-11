@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="style.css"/>
     <title>"Insert App Title Here"</title>
     
 </head>
@@ -25,13 +26,21 @@
                     <input id="actor-search-FN" type="text" placeholder="First Name" name="first-name">
                     <input id="actor-search-LN" type="text" placeholder="Last Name" name="last-name">
                     <!-- <textarea class="title-input form-control search-input"placeholder="Actor" aria-label="Actor"></textarea> -->
-                    <input type="checkbox" id="Netflix" name="Netflix" value="203">
-                    <label for="Netflix"> Netflix</label><br>
-                    <input type="checkbox" id="Hulu" name="Hulu" value="157">
-                    <label for="vehicle2">Hulu</label><br>
-                    <input type="checkbox" id="AmazonPrime" name="AmazonPrime" value="26">
-                    <label for="AmazonPrime">Amazon Prime</label><br>
+                    <table id="check-table">
+                    <tr>                      
+                      <input type="checkbox" id="Netflix" name="Netflix" value="203">
+                      <label for="Netflix"> Netflix</label><br>
+                    </tr>
+                    <tr>
+                      <input type="checkbox" id="Hulu" name="Hulu" value="157">
+                      <label for="vehicle2">Hulu</label><br>
+                    </tr>
+                    <tr>
+                      <input type="checkbox" id="AmazonPrime" name="AmazonPrime" value="26">
+                      <label for="AmazonPrime">Amazon Prime</label><br>
+                    </tr>
                     <button id="search-button">Search</button>
+                    </table>
 
 
                 </form>
@@ -44,6 +53,7 @@
         </div>
     </div>
     <h2 class="showingResults" id="showingResults">Showing Results for ... </h2>
+    <div class="card-group"></div>
     <!-- <div class="movie-list"> -->
       <!-- <div class="movie-item">
         <img src="https://i.ebayimg.com/images/g/5YEAAOSwkepZipxQ/s-l500.jpg" class="movie-img" alt="poster1">
@@ -99,6 +109,7 @@
       
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="script4.js"></script>
 </body>
 </html>

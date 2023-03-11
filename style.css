@@ -58,3 +58,7 @@ main {
     background-color: indianred;
     transition: 150ms;
 }
+
+.card {
+    background-color: blueviolet;
+}
