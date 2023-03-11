@@ -13,6 +13,10 @@ var searchHistory = document.getElementById("search-history-item")
 var streamingChoices= []
 var movieIDList= []
 var searchResults = document.querySelector('#showingResults');
+var apiKey = "LIWppP7IvqjdNcbRT3ZklnqeJFYeEulrPoCVFsLj"
+var streamingUser = [203, 157]
+
+//lillian apikey  fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -52,7 +56,7 @@ createSearchHistory();
 
 function fetchActorInfo(actor) {
   
-  var actorFile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value='+ actor; //, options)
+  var actorFile = 'https://api.watchmode.com/v1/search/?apiKey=' + apiKey +'&search_field=name&search_value='+ actor; //, options)
 	fetch(actorFile)
   .then(function (response) {
     return response.json();
@@ -101,7 +105,7 @@ function fetchActorInfo(actor) {
 }
 function getStreaming(){
   for(var i=0; i< movieIDList.length; i++)
-  var titleStreaming="https://api.watchmode.com/v1/title/movie-"+ movieIDList[i]+"/details/?apiKey=ujX1AEVczVkM6DqgFxXzt8pH4KDDxwlzuJB83DMq&append_to_response=sources"
+  var titleStreaming="https://api.watchmode.com/v1/title/movie-"+ movieIDList[i]+"/details/?apiKey="+ apiKey +"&append_to_response=sources"
   fetch(titleStreaming)
   .then(function (response) {
     return response.json();
@@ -109,7 +113,9 @@ function getStreaming(){
   .then(function(movieList) {
     console.log(movieList);
     for (var m =0; m <movieList.sources.length; m++){
-    if (movieList.sources[m].type === "sub"){
+     // for (var k=0; k<streamingUser.length)
+    if (movieList.sources[m].source_id ===203 || movieList.sources[m].source_id ===157 || movieList.sources[m].source_id ===26|| movieList.sources[m].source_id ===387|| movieList.sources[m].source_id ===372|| movieList.sources[m].source_id ===444 || movieList.sources[m].source_id ===389){
+
       streamingChoices.push({title: movieList.original_title, source:movieList.sources[m], id: movieList.id, poster:movieList.poster})
       
       var movieResults = document.createElement('div');
@@ -118,7 +124,8 @@ function getStreaming(){
       var source = document.createElement('h3');
 
       var posterDisplay = document.createElement('h2');
-      posterDisplay.innerHTML = '<img src="' + posterURL + '"' + '>'
+      posterDisplay.innerHTML = '<a href="'+movieList.sources[m].web_url+'"><img src="' + posterURL + '"></a>'
+
 
       searchResults.append(movieResults);
       searchResults.appendChild(posterDisplay);
