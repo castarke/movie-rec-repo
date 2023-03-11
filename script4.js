@@ -17,7 +17,7 @@ var movieIDList = []
 var searchResults = document.querySelector('.card-group');
 var apiKey = "mUl3e8Y4nVeM2c1pVCyeUQl4BIGpyU62ag1qLpuh"
 var streamingPossibility = [203, 157, 26, 387, 372, 444, 389]
-var checkboxes = document.querySelectorAll("input[type='checkbox']:checked")
+var checkboxes = document.querySelectorAll(".checkbox")
 
 
 //lillian apikey  fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou (doesn't seem to be verified?)
@@ -42,8 +42,11 @@ var actorChoice = function (event) {
     $("#showingResults").text("Showing Current Results for " + decodeURIComponent(actorChoice)); //Need to fix this so it will fix displayed actors when switching back and to a different previously searched actor
     createSearchHistory();
   }
+
   for (var i = 0 ; i < checkboxes.length; i++) {
-    streamingUser.push(checkboxes[i].value)}
+      if(checkboxes[i].checked){
+      streamingUser.push(checkboxes[i].value)}}
+    
   console.log(streamingUser);
   fetchActorInfo(actorChoice);
   getactorid(actorChoice);
