@@ -14,14 +14,14 @@ var streamingChoices = []
 //need to create a function push into streamingUser//
 var streamingUser = [203, 157, 26]
 var movieIDList = []
-var searchResults = document.querySelector('#showingResults');
-var apiKey = "rSs7RECPsjiaPSMBsiIW5aeU8GDvvFBbTlIzYlKZ"
+var searchResults = document.querySelector('.card-group');
+var apiKey = "AKi0ThTBZuWQTdTRBgK8RWYkG7YDdWv6nsyPFoHi"
 var streamingPossibility = [203, 157, 26, 387, 372, 444, 389]
 var checkboxes = document.querySelectorAll("input[type='checkbox']:checked")
 
 
 //lillian apikey  fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou (doesn't seem to be verified?)
-//candlers API keys AKi0ThTBZuWQTdTRBgK8RWYkG7YDdWv6nsyPFoHi       mUl3e8Y4nVeM2c1pVCyeUQl4BIGpyU62ag1qLpuh       CfSeK9DplZ3luNpOAf3Y8EJqweIEU19zkNuiTEQH
+//candlers API keys      mUl3e8Y4nVeM2c1pVCyeUQl4BIGpyU62ag1qLpuh       CfSeK9DplZ3luNpOAf3Y8EJqweIEU19zkNuiTEQH
 
 
 var actorChoice = function (event) {
@@ -139,11 +139,18 @@ function fetchActorInfo(actor) {
                       console.log(sourceID)
                       var movieTitle = document.createElement('h2');
                      
-                      searchResults.append(movieResults);
+                      searchResults.appendChild(movieResults);
+                      movieResults.classList.add("card");
+
                       var posterDisplay = document.createElement('h2');
                       posterDisplay.innerHTML = '<a href="' + filminfo.sources[m].web_url + '"><img src="' + posterURL + '"></a>'
-                      searchResults.appendChild(posterDisplay);
+                      movieResults.append(posterDisplay);
+                      posterDisplay.classList.add("card-img-top")
+                      
                       var sourceIcon = document.createElement('div');
+
+                      movieResults.append(sourceIcon);
+                      
                       if (sourceID===157) {
                         sourceIcon.innerHTML= '<img src="assets/hulu.png">'
                       }
@@ -168,8 +175,7 @@ function fetchActorInfo(actor) {
                       if (sourceID===480) {
                         sourceIcon.innerHTML= '<img src="assets/crunchyroll.png">'
                       }
-                     
-                      searchResults.appendChild(sourceIcon);
+                  
                      
                      
 
@@ -205,3 +211,4 @@ function fetchActorInfo(actor) {
 
     )
 }
+searchBtn.addEventListener('click', actorChoice);
