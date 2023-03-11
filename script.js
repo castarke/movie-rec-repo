@@ -12,6 +12,7 @@ var nameid;
 var searchHistory = document.getElementById("search-history-item")
 var streamingChoices= []
 var movieIDList= []
+var searchResults = document.querySelector('#showingResults');
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -106,12 +107,33 @@ function getStreaming(){
     return response.json();
   })
   .then(function(movieList) {
+    console.log(movieList);
     for (var m =0; m <movieList.sources.length; m++){
     if (movieList.sources[m].type === "sub"){
-      streamingChoices.push({title: movieList.original_title, source:movieList.sources[m]})
+      streamingChoices.push({title: movieList.original_title, source:movieList.sources[m], id: movieList.id, poster:movieList.poster})
+      
+      var movieResults = document.createElement('div');
+      var posterURL = movieList.poster;
+      var movieTitle = document.createElement('h2');
+      var source = document.createElement('h3');
+
+      var posterDisplay = document.createElement('h2');
+      posterDisplay.innerHTML = '<img src="' + posterURL + '"' + '>'
+
+      searchResults.append(movieResults);
+      searchResults.appendChild(posterDisplay);
+  
+      console.log(posterURL);
     }}})
     console.log(streamingChoices)
-} 
+
+    // for (var i = 0; i < streamingChoices.length; i++) {
+    //     // img.setAttribute('src', streamingChoices[i].poster);
+    //     // searchResults.append(div);
+    //     // div.appendChild(img);
+    //   }
+
+}
 
 searchBtn.addEventListener('click', actorChoice);
 
