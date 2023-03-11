@@ -118,48 +118,33 @@ function fetchActorInfo(actor) {
                       var posterDisplay = document.createElement('h2');
                       posterDisplay.innerHTML = '<a href="' + filminfo.sources[m].web_url + '"><img src="' + posterURL + '"></a>'
                       searchResults.appendChild(posterDisplay);
+                      var sourceIcon = document.createElement('div');
                       if (sourceID===157) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/hulu.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       if (sourceID===26) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/prime_video.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       if (sourceID===203) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/netflix.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       if (sourceID===387) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/disneyPlus.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       if (sourceID===371) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/hbomax.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       if (sourceID===444) {
-                        var sourceIcon = document.createElement('div');
-                        sourceIcon.innerHTML= '<img src="assets/paramountPlus.png">'
-                        searchResults.appendChild(sourceIcon);
+                        sourceIcon.innerHTML= '<img src="assets/paramountPlus.png">'           
                       }
-                      if (sourceID===389) {
-                        var sourceIcon = document.createElement('div');
-                        sourceIcon.innerHTML= '<img src="assets/peacockPremium.png">'
-                        searchResults.appendChild(sourceIcon);
+                      if (sourceID===389) { 
+                        sourceIcon.innerHTML= '<img src="assets/peacockPremium.png">'  
                       } 
                       if (sourceID===480) {
-                        var sourceIcon = document.createElement('div');
                         sourceIcon.innerHTML= '<img src="assets/crunchyroll.png">'
-                        searchResults.appendChild(sourceIcon);
                       }
                       
-                      
+                      searchResults.appendChild(sourceIcon);
                       
                       
 
