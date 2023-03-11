@@ -14,14 +14,25 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
-var apiKey = "dPsE821KktIObYhWPKodL7hjwaUXlXa03Jtdzpzv"
+var apiKey = "vIx8EEvBjgw0yHJvYS3enMOOGMQwlqns4QvRy72N"
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
 
 
 var actorChoice = function (event) {
   event.preventDefault();
-
+  for (var i = 0 ; i < checkboxes.length; i++) {
+    if(checkboxes[i].checked){
+    streamingUser.push(parseInt(checkboxes[i].value))}
+    console.log(streamingUser)}
+  if(streamingUser.length ===0){
+    searchResults.innerHTML = "";
+    var error = document.createElement("h2");
+    error.textContent="Please choose at least one streaming service";
+    searchResults.appendChild(error);
+    return;
+    
+  }
   var actorChoice = encodeURIComponent(actorValue.value);
 
   console.log('this is my actor choice:', actorChoice);
@@ -35,18 +46,14 @@ var actorChoice = function (event) {
     createSearchHistory();
   }
 
-  for (var i = 0 ; i < checkboxes.length; i++) {
-      if(checkboxes[i].checked){
-      streamingUser.push(parseInt(checkboxes[i].value))}}
-    
-  console.log(streamingUser);
+  
   fetchActorInfo(actorChoice);
   // getactorid(actorChoice);
 }
 
 // creating a search history that has clickable actor names
 function createSearchHistory() {
- 
+  searchHistory.innerHTML ="";
   previousActorArray.forEach(actor => {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
@@ -161,15 +168,23 @@ function fetchActorInfo(actor) {
                     }
                   }
                 }
+               
                         })
+                       
     }
-          if (streamingChoices.length >= 5) {
-    return
-  }
+          
+
+  })
+  
 })
+if (streamingChoices.length ===0) {
+    
+  var message = document.createElement("h2")
+  message.textContent ="No streaming options found";
+  searchResults.appendChild(message)
+  return;}
     }
 
 
-    )
-}
+   
 searchBtn.addEventListener('click', actorChoice);
