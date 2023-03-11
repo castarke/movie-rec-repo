@@ -11,6 +11,7 @@ var c=0;
 var nameid;
 var searchHistory = document.getElementById("search-history-item")
 var streamingChoices= []
+var movieIDList= []
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -75,18 +76,20 @@ function fetchActorInfo(actor) {
         console.log(filmList)
         
 
-        /*for (var i = 0; i < filmList.cast[i].original_title.length; i++) {
+        for (var i = 0; i < filmList.cast[i].original_title.length; i++) {
           
           movieArray.push(filmList.cast[i].original_title);
           console.log('the actor was in this film:', filmList.cast[i].original_title);
-          
-         getmovieID();
-          
+          movieIDList.push(filmList.cast[i].id);
+          console.log(movieIDList)
+    
+          getStreaming();
           
           m++;
-        }*/
+        }
         
       })
+     
     }) 
 
      
@@ -95,31 +98,27 @@ function fetchActorInfo(actor) {
      
      
 }
-function getmovieID(){
-  
-  for (i=0; i < movieArray.length; i++)
-  movieArray[i].replace (' ','%20')
-var titleID ="https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=title&search_value=Se7en"
-
-fetch(titleID)
-.then(function (response) {
-  return response.json();
-})
-
-.then(function(filmIDList) {
-
-  console.log(filmIDList)})}
+function getStreaming(){
+  for(var i=0; i< movieIDList.length; i++)
+  var titleStreaming="https://api.watchmode.com/v1/title/movie-"+ movieIDList[i]+"/details/?apiKey=ujX1AEVczVkM6DqgFxXzt8pH4KDDxwlzuJB83DMq&append_to_response=sources"
+  fetch(titleStreaming)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function(movieList) {
+    for (var m =0; m <movieList.sources.length; m++){
+    if (movieList.sources[m].type === "sub"){
+      streamingChoices.push({title: movieList.original_title, source:movieList.sources[m]})
+    }}})
+    console.log(streamingChoices)
+} 
 
 searchBtn.addEventListener('click', actorChoice);
 
 
 //We need to use watchmode to get the actor id then, search for movies using id, then get streaming services, then use movietmdb to get posters for movies
 
-function getStreaming(){
-  var titleStreaming = 'https://api.watchmode.com/v1/title/' + titleID + '/sources/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru'
-  fetch(streaming)
-
-}         
+        
 
 /*function getAPI(){
   var providerfile = 'https://api.watchmode.com/v1/search/?apiKey=kCnLHad9gCGe5xv6MiLSMGWDrNJfKFGF8oNK5Lru&search_field=name&search_value='+ movieArray[m]; //, options)
