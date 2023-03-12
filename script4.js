@@ -14,7 +14,7 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
-var apiKey = "vIx8EEvBjgw0yHJvYS3enMOOGMQwlqns4QvRy72N"
+var apiKey = "fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou"
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
 
@@ -177,12 +177,12 @@ function fetchActorInfo(actor) {
   })
   
 })
-if (streamingChoices.length ===0) {
+// if (streamingChoices.length ===0) {
     
-  var message = document.createElement("h2")
-  message.textContent ="No streaming options found";
-  searchResults.appendChild(message)
-  return;}
+//   var message = document.createElement("h2")
+//   message.textContent ="No streaming options found";
+//   searchResults.appendChild(message)
+//   return;}
     }
 
 

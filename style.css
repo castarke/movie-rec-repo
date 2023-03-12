@@ -1,16 +1,18 @@
 body {
     background-color: cadetblue;
     margin: 10px;
-}
-main {
+  }
+  
+  main {
     margin-right: 200px;
-}
-.container {
-float: left;
-}
-.list-group {
+  }
+  
+  .container {
+    float: left;
+  }
+  
+  .list-group {
     position: fixed;
-    /* padding-left: 15px; */
     top: 0;
     right: 0;
     margin-top: 2.5%;
@@ -18,34 +20,44 @@ float: left;
     height: 95%;
     width: 200px;
     background-color: burlywood;
-}
-.list-group-item {
+  }
+  
+  .list-group-item {
     display: flex;
     justify-content: space-around;
-    gap: 50px;
-}
-.card-group{
+    gap: 25px;
+  }
+  
+  .card-group {
     display: flex;
-    gap:20px;
-    /* padding: 20px; */
-}
-.card {
+    gap: 20px;
+  }
+  
+  .card {
     display: flex;
-    flex-wrap: wrap;
-    /* padding: 20px; */
     margin: 10px;
+    padding: 10px;
     justify-content: space-evenly;
     align-items: center;
-    overflow:hidden;
+    overflow: hidden;
     gap: 20px;
     background-color: blueviolet;
-    size-adjust: 10px;
-}
-.card-img-top{
+  }
+  
+  .card-img-top {
     display: block;
     margin-left: auto;
-    margin-right: auto;    
-}
-#actor-search {
+    margin-right: auto;
+  }
+  
+  #actor-search {
     margin: 10px;
-}
+  }
+  
+  @media (min-width: 576px) {
+    .card-group > .card {
+      flex: initial;
+      margin-bottom: initial;
+    }
+  }
+  
