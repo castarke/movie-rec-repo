@@ -162,9 +162,27 @@ function fetchActorInfo(actor) {
                       var movieTitle = document.createElement("h2");
 
                       searchResults.appendChild(movieResults);
+                      
                       movieResults.classList.add("card");
                       movieResults.classList.add("col");
+                      movieResults.classList.add("draggable");
 
+                      $ (function(){
+                        $('.draggable').draggable({helper : "clone"});
+                        
+              
+                          $('#droppable').droppable({
+                            classes: {
+                            "ui-droppable-active": "ui-state-active",
+                            "ui-droppable-hover": "ui-state-hover"},
+                            drop: function(event){
+                              
+                              
+                              
+                            }
+                            })
+                          });
+                          //test
                       var posterDisplay = document.createElement("h2");
                       posterDisplay.innerHTML =
                         '<a href="' +
