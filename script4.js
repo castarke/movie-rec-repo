@@ -54,7 +54,6 @@ var actorChoice = function (event) {
   }
 
   fetchActorInfo(actorChoice);
-
 };
 
 // creating a search history that has clickable actor names
@@ -80,7 +79,6 @@ function createSearchHistory() {
         return;
       }
       fetchActorInfo(actor);
-
     });
     searchHistory.appendChild(newActor);
   });
@@ -159,13 +157,12 @@ function fetchActorInfo(actor) {
                       console.log(streamingChoices);
                       var movieResults = document.createElement("div");
                       var posterURL = filminfo.poster;
-                      var runtime = filminfo.runtime_minutes;
                       console.log(sourceID);
                       var movieTitle = document.createElement("h2");
 
                       searchResults.appendChild(movieResults);
                       movieResults.classList.add("card");
-                      movieResults.classList.add('col')            
+                      movieResults.classList.add("col");
 
                       var posterDisplay = document.createElement("h2");
                       posterDisplay.innerHTML =
@@ -176,6 +173,18 @@ function fetchActorInfo(actor) {
                         '"></a>';
                       movieResults.append(posterDisplay);
                       posterDisplay.classList.add("card-img-top");
+
+                      // Adding Title, Runtime, and (main) Genre
+                      var originalTitle = filminfo.original_title;
+                      movieResults.append(originalTitle);
+
+                      var runtime = filminfo.runtime_minutes;
+                      var runtimeDisplay = runtime + " minutes";
+                      movieResults.append(runtimeDisplay);
+
+                      var primaryGenre = filminfo.genre_names[0];
+                      movieResults.append(primaryGenre);
+                      // STILL NOT SURE ABOUT THIS THOUGH
 
                       var sourceIcon = document.createElement("div");
 
