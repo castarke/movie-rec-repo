@@ -188,7 +188,7 @@ function fetchActorInfo(actor) {
                       ratingSpan.style.display = "block";
                       ratingSpan.textContent = "User Rating: " + userRating;
                       movieResults.appendChild(ratingSpan);
-
+                      // 
                       var sourceIcon = document.createElement("div");
 
                       movieResults.append(sourceIcon);
