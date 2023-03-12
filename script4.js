@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "AxMWVE3BKbkyNUvzzh2OotmVxO0eBcx8dQj1sGK7";
+var apiKey = "iMrjKFTdSUhUQWxvPoVOgpClzvZYJttjpMmJfj30";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 var actorChoice = function (event) {
@@ -63,6 +63,7 @@ function createSearchHistory() {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
+    
     newActor.addEventListener("click", () => {
       
       streamingUser = [];
@@ -81,6 +82,7 @@ function createSearchHistory() {
       }
       fetchActorInfo(actor);
     });
+    
     searchHistory.appendChild(newActor);
   });
 }
@@ -116,17 +118,17 @@ function fetchActorInfo(actor) {
         })
 
         .then(function (filmList) {
-          if (streamingChoices.length >= 5) {
-            return;
-          }
+          // if (streamingChoices.length >= 5) {
+          //   return;
+          // }
           movieArray = [];
 
           console.log(filmList);
 
           for (var i = 0; i < 10 /*filmList.cast.length*/; i++) {
-            if (streamingChoices.length >= 5) {
-              return;
-            }
+            // if (streamingChoices.length >= 5) {
+            //   return;
+            // }
             movieArray.push(filmList.cast[i].original_title);
             //console.log('the actor was in this film:', filmList.cast[i].original_title);
             movieIDList.push(filmList.cast[i].id);
