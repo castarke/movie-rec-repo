@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "AxMWVE3BKbkyNUvzzh2OotmVxO0eBcx8dQj1sGK7";
+var apiKey = "fnQF7cIzL9GDnQfOrDrr4M8yKPkTwywAkoF2ArgH";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 var actorChoice = function (event) {
@@ -220,7 +220,34 @@ function fetchActorInfo(actor) {
                         sourceIcon.innerHTML =
                           '<img src="assets/crunchyroll.png">';
                       }
+
+                      // save movie choice to local storage
+                      var saveBtn = document.createElement('button');
+                      saveBtn.textContent = "Save";
+
+                      movieResults.append(saveBtn);             
+                                            
+                      saveBtn.addEventListener('click', function () {
+                        var savedMovArray = JSON.parse(localStorage.getItem('savedMovies')) || [];
+                        if (savedMovArray.includes(originalTitle)) {
+                          return;
+                        } else {
+                          savedMovArray.push(originalTitle);
+                        }
+                        localStorage.setItem('savedMovies', JSON.stringify(savedMovArray));
+                        console.log(savedMovArray);
+                        createWatchList();
+                      })
                     }
+                    function createWatchList() {
+                      var displayList = document.querySelector('#saved-list');
+                      var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+                      for (var i = 0; i < storedMovies.length; i++) {
+                      var savedMovie = document.createElement('li');
+                      savedMovie.textContent = storedMovies[i];
+                      displayList.appendChild(savedMovie);
+                    }}
+                    
                   }
                 }
               });
