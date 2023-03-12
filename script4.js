@@ -161,7 +161,7 @@ function fetchActorInfo(actor) {
                       movieResults.append(sourceIcon);
                       
                       $ (function(){
-                        $('.draggable').draggable({revert : "valid"});
+                        $('.draggable').draggable({helper : "clone"});
                         
               
                           $('#droppable').droppable({
