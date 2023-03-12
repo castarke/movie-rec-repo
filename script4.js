@@ -15,10 +15,9 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "0OjV2d3w6Z3IuCmIv4zGSPb6ASc1DbyP7ZnfRKhM";
+var apiKey = "AxMWVE3BKbkyNUvzzh2OotmVxO0eBcx8dQj1sGK7";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
-
 var actorChoice = function (event) {
   event.preventDefault();
   streamingUser = [];
@@ -58,12 +57,14 @@ var actorChoice = function (event) {
 
 // creating a search history that has clickable actor names
 function createSearchHistory() {
+  streamingUser=[];
   searchHistory.innerHTML = "";
   previousActorArray.forEach((actor) => {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
     newActor.addEventListener("click", () => {
+      
       streamingUser = [];
       for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
