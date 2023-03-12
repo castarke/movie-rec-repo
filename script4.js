@@ -118,10 +118,12 @@ function fetchActorInfo(actor) {
         })
 
         .then(function (filmList) {
-
           // if (streamingChoices.length >= 5) {
           //   return
           // }
+
+
+        
           movieArray = [];
 
           console.log(filmList);
