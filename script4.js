@@ -162,6 +162,7 @@ function fetchActorInfo(actor) {
                       var movieTitle = document.createElement("h2");
 
                       searchResults.appendChild(movieResults);
+                      
                       movieResults.classList.add("card");
                       movieResults.classList.add("col");
                       movieResults.classList.add("draggable");
