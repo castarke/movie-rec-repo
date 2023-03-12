@@ -14,11 +14,7 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
-<<<<<<< HEAD
-var apiKey = "fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou"
-=======
-var apiKey = "ebBu2SWglnRwiYwqhOZfMqbxkPCVIdsBQqRJUXu1"
->>>>>>> ae7e866d3552a56105ee325d5836597593c54026
+var apiKey = "0OjV2d3w6Z3IuCmIv4zGSPb6ASc1DbyP7ZnfRKhM"
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
 
@@ -149,6 +145,7 @@ function fetchActorInfo(actor) {
                      
                       searchResults.appendChild(movieResults);
                       movieResults.classList.add("card");
+                      movieResults.classList.add('col')            
 
                       var posterDisplay = document.createElement('h2');
                       posterDisplay.innerHTML = '<a href="' + filminfo.sources[m].web_url + '"><img src="' + posterURL + '"></a>'
@@ -158,6 +155,7 @@ function fetchActorInfo(actor) {
                       var sourceIcon = document.createElement('div');
 
                       movieResults.append(sourceIcon);
+                      sourceIcon.classList.add("stream-icon")
                       
                       if (sourceID===157) {
                         sourceIcon.innerHTML= '<img src="assets/hulu.png">'
