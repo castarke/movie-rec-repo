@@ -14,7 +14,11 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
+<<<<<<< HEAD
+var apiKey = "fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou"
+=======
 var apiKey = "ebBu2SWglnRwiYwqhOZfMqbxkPCVIdsBQqRJUXu1"
+>>>>>>> ae7e866d3552a56105ee325d5836597593c54026
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
 
