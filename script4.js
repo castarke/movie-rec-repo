@@ -63,6 +63,7 @@ function createSearchHistory() {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
+    
     newActor.addEventListener("click", () => {
       
       streamingUser = [];
@@ -81,6 +82,7 @@ function createSearchHistory() {
       }
       fetchActorInfo(actor);
     });
+    
     searchHistory.appendChild(newActor);
   });
 }
@@ -116,17 +118,20 @@ function fetchActorInfo(actor) {
         })
 
         .then(function (filmList) {
-          if (streamingChoices.length >= 5) {
-            return;
-          }
+          // if (streamingChoices.length >= 5) {
+          //   return
+          // }
+
+
+        
           movieArray = [];
 
           console.log(filmList);
 
           for (var i = 0; i < 10 /*filmList.cast.length*/; i++) {
-            if (streamingChoices.length >= 5) {
-              return;
-            }
+            // if (streamingChoices.length >= 5) {
+            //   return;
+            // }
             movieArray.push(filmList.cast[i].original_title);
             //console.log('the actor was in this film:', filmList.cast[i].original_title);
             movieIDList.push(filmList.cast[i].id);
@@ -162,9 +167,27 @@ function fetchActorInfo(actor) {
                       var movieTitle = document.createElement("h2");
 
                       searchResults.appendChild(movieResults);
+                      
                       movieResults.classList.add("card");
                       movieResults.classList.add("col");
+                      movieResults.classList.add("draggable");
 
+                      $ (function(){
+                        $('.draggable').draggable({helper : "clone"});
+                        
+              
+                          $('#droppable').droppable({
+                            classes: {
+                            "ui-droppable-active": "ui-state-active",
+                            "ui-droppable-hover": "ui-state-hover"},
+                            drop: function(event){
+                              
+                              
+                              
+                            }
+                            })
+                          });
+                          //test
                       var posterDisplay = document.createElement("h2");
                       posterDisplay.innerHTML =
                         '<a href="' +
@@ -176,17 +199,19 @@ function fetchActorInfo(actor) {
                       posterDisplay.classList.add("card-img-top");
 
                       // Adding Title, Runtime, and (main) Genre
-                      var originalTitle = filminfo.original_title;
-                      movieResults.append(originalTitle);
+                      var originalTitle = filminfo.title;
+                      var userRating = filminfo.user_rating;
+                      var releaseDate = filminfo.year;
 
-                      var runtime = filminfo.runtime_minutes;
-                      var runtimeDisplay = runtime + " minutes";
-                      movieResults.append(runtimeDisplay);
-
-                      var primaryGenre = filminfo.genre_names[0];
-                      movieResults.append(primaryGenre);
-                      // STILL NOT SURE ABOUT THIS THOUGH
-
+                      var titleSpan = document.createElement("span");
+                      titleSpan.style.display = "block";
+                      titleSpan.textContent = originalTitle + "\n"+ "(" +releaseDate+ ")";
+                      movieResults.appendChild(titleSpan);
+                      var ratingSpan = document.createElement("span");
+                      ratingSpan.style.display = "block";
+                      ratingSpan.textContent = "User Rating: " + userRating;
+                      movieResults.appendChild(ratingSpan);
+                      // 
                       var sourceIcon = document.createElement("div");
 
                       movieResults.append(sourceIcon);
