@@ -63,6 +63,7 @@ function createSearchHistory() {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
+    
     newActor.addEventListener("click", () => {
       
       streamingUser = [];
@@ -81,6 +82,7 @@ function createSearchHistory() {
       }
       fetchActorInfo(actor);
     });
+    
     searchHistory.appendChild(newActor);
   });
 }
@@ -116,17 +118,20 @@ function fetchActorInfo(actor) {
         })
 
         .then(function (filmList) {
-          if (streamingChoices.length >= 5) {
-            return;
-          }
+          // if (streamingChoices.length >= 5) {
+          //   return
+          // }
+
+
+        
           movieArray = [];
 
           console.log(filmList);
 
           for (var i = 0; i < 10 /*filmList.cast.length*/; i++) {
-            if (streamingChoices.length >= 5) {
-              return;
-            }
+            // if (streamingChoices.length >= 5) {
+            //   return;
+            // }
             movieArray.push(filmList.cast[i].original_title);
             //console.log('the actor was in this film:', filmList.cast[i].original_title);
             movieIDList.push(filmList.cast[i].id);
