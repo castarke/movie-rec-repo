@@ -177,12 +177,12 @@ function fetchActorInfo(actor) {
   })
   
 })
-// if (streamingChoices.length ===0) {
+if (streamingChoices.length ===0) {
     
-//   var message = document.createElement("h2")
-//   message.textContent ="No streaming options found";
-//   searchResults.appendChild(message)
-//   return;}
+  var message = document.createElement("h2")
+  message.textContent ="No streaming options found";
+  searchResults.appendChild(message)
+  return;}
     }
 
 
