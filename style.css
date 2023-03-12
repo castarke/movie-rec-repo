@@ -74,7 +74,13 @@ body {
     box-shadow: 10px 10px 5px #3F3F41;
     width: min-content;
   }
-  
+  div.card.col {
+    color: #D8DBDE;
+  }
+
+  div.card.col:hover {
+    color: #3F3F41;
+  }
   .card-img-top {
     display: block;
     margin-left: auto;
@@ -95,7 +101,7 @@ body {
   }
 
   .card:hover{
-    background-color: #F0F0F0 ;
+    background-color: #F0F0F0;
   }
 
   img:hover {
