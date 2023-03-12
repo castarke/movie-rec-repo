@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "ebBu2SWglnRwiYwqhOZfMqbxkPCVIdsBQqRJUXu1";
+var apiKey = "0OjV2d3w6Z3IuCmIv4zGSPb6ASc1DbyP7ZnfRKhM";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 
@@ -54,7 +54,7 @@ var actorChoice = function (event) {
   }
 
   fetchActorInfo(actorChoice);
-  // getactorid(actorChoice);
+
 };
 
 // creating a search history that has clickable actor names
@@ -80,7 +80,7 @@ function createSearchHistory() {
         return;
       }
       fetchActorInfo(actor);
-      // getactorid(actor);
+
     });
     searchHistory.appendChild(newActor);
   });
@@ -165,6 +165,7 @@ function fetchActorInfo(actor) {
 
                       searchResults.appendChild(movieResults);
                       movieResults.classList.add("card");
+                      movieResults.classList.add('col')            
 
                       var posterDisplay = document.createElement("h2");
                       posterDisplay.innerHTML =

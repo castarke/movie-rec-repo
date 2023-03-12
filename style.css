@@ -1,6 +1,33 @@
 body {
-    background-color: cadetblue;
+    background-color: #63686E;
     margin: 10px;
+    font-family: 'Kanit', sans-serif;
+  }
+
+  #search-button {
+    border-radius: 5px;
+  }
+
+  #search-history-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 200px;
+  }
+
+  header {
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    color: #D8DBDE;
+  }
+
+  .form-check-label {
+    font-weight: bold;
+  }
+
+  button {
+    margin: 5px;
+    font-weight: bold;
   }
   
   main {
@@ -8,7 +35,7 @@ body {
   }
   
   .container {
-    float: left;
+    margin-left: 50px;
   }
   
   .list-group {
@@ -19,7 +46,7 @@ body {
     margin-bottom: 2.5%;
     height: 95%;
     width: 200px;
-    background-color: burlywood;
+    background-color: #D8DBDE;
   }
   
   .list-group-item {
@@ -29,19 +56,23 @@ body {
   }
   
   .card-group {
-    display: flex;
     gap: 20px;
+    align-items: center;
+    margin-right: 200px;
   }
   
   .card {
     display: flex;
     margin: 10px;
-    padding: 10px;
+    padding: 15px;
     justify-content: space-evenly;
     align-items: center;
     overflow: hidden;
     gap: 20px;
-    background-color: blueviolet;
+    background-color: #1D2545 ;
+    border-radius: 10px !important;
+    box-shadow: 10px 10px 5px #3F3F41;
+    width: min-content;
   }
   
   .card-img-top {
@@ -52,6 +83,23 @@ body {
   
   #actor-search {
     margin: 10px;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+
+  .stream-icon {
+    max-width: 75%;
+    max-height: 75% !important;
+  }
+
+  .card:hover{
+    background-color: #F0F0F0 ;
+  }
+
+  img:hover {
+    filter: grayscale(100%);
   }
   
   @media (min-width: 576px) {
