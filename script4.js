@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "iMrjKFTdSUhUQWxvPoVOgpClzvZYJttjpMmJfj30";
+var apiKey = "gW1RCkXBwKIC7skk1fs7XiIrtx3RX9qwTilm2AF0";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 var actorChoice = function (event) {
@@ -199,17 +199,19 @@ function fetchActorInfo(actor) {
                       posterDisplay.classList.add("card-img-top");
 
                       // Adding Title, Runtime, and (main) Genre
-                      var originalTitle = filminfo.original_title;
-                      movieResults.append(originalTitle);
+                      var originalTitle = filminfo.title;
+                      var userRating = filminfo.user_rating;
+                      var releaseDate = filminfo.year;
 
-                      var runtime = filminfo.runtime_minutes;
-                      var runtimeDisplay = runtime + " minutes";
-                      movieResults.append(runtimeDisplay);
-
-                      var primaryGenre = filminfo.genre_names[0];
-                      movieResults.append(primaryGenre);
-                      // STILL NOT SURE ABOUT THIS THOUGH
-
+                      var titleSpan = document.createElement("span");
+                      titleSpan.style.display = "block";
+                      titleSpan.textContent = originalTitle + "\n"+ "(" +releaseDate+ ")";
+                      movieResults.appendChild(titleSpan);
+                      var ratingSpan = document.createElement("span");
+                      ratingSpan.style.display = "block";
+                      ratingSpan.textContent = "User Rating: " + userRating;
+                      movieResults.appendChild(ratingSpan);
+                      // 
                       var sourceIcon = document.createElement("div");
 
                       movieResults.append(sourceIcon);
