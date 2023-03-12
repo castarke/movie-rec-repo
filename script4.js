@@ -14,13 +14,14 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
-var apiKey = "vIx8EEvBjgw0yHJvYS3enMOOGMQwlqns4QvRy72N"
+var apiKey = "ebBu2SWglnRwiYwqhOZfMqbxkPCVIdsBQqRJUXu1"
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
 
 
 var actorChoice = function (event) {
   event.preventDefault();
+  streamingUser=[];
   for (var i = 0 ; i < checkboxes.length; i++) {
     if(checkboxes[i].checked){
     streamingUser.push(parseInt(checkboxes[i].value))}
@@ -59,10 +60,24 @@ function createSearchHistory() {
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
     newActor.addEventListener("click", () => {
+      streamingUser=[];
+       for (var i = 0 ; i < checkboxes.length; i++) {
+        if(checkboxes[i].checked){
+        streamingUser.push(parseInt(checkboxes[i].value))}}
+      
+      if(streamingUser.length ===0){
+        searchResults.innerHTML = "";
+        var error = document.createElement("h2");
+        error.textContent="Please choose at least one streaming service";
+        searchResults.appendChild(error);
+        return;
+        
+      }
       fetchActorInfo(actor);
       // getactorid(actor);
     });
     searchHistory.appendChild(newActor);
+    
   });
 }
 
@@ -164,6 +179,7 @@ function fetchActorInfo(actor) {
                       if (sourceID===80) {
                         sourceIcon.innerHTML= '<img src="assets/crunchyroll.png">'
                       }
+                      
 
                     }
                   }
@@ -172,18 +188,21 @@ function fetchActorInfo(actor) {
                         })
                        
     }
+  
           
 
   })
   
 })
-if (streamingChoices.length ===0) {
-    
-  var message = document.createElement("h2")
-  message.textContent ="No streaming options found";
-  searchResults.appendChild(message)
-  return;}
+.then (function (){
+  if (arrayIsEmpty(streamingChoices)){
+  var noOptions = document.createElement("h2");
+  noOptions.textContent ="No streaming options found";
+  searchHistory.appendChild(noOptions)}
+})
+
     }
+
 
 
    
