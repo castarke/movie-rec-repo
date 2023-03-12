@@ -14,13 +14,11 @@ var streamingChoices = []
 var streamingUser = []
 var movieIDList = []
 var searchResults = document.querySelector('.card-group');
-<<<<<<< HEAD
-var apiKey = "fwp3LzoxBHaRgFysl9BBw1r1h4GvfliYReDolIou"
-=======
-var apiKey = "ebBu2SWglnRwiYwqhOZfMqbxkPCVIdsBQqRJUXu1"
->>>>>>> ae7e866d3552a56105ee325d5836597593c54026
+var apiKey = "dvhCWTTCVn3KO2tJMhUYDTKVSRS83u9UD8w5jatw"
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80]
 var checkboxes = document.querySelectorAll(".checkbox")
+var z=0;
+var card = document.querySelector('.card');
 
 
 var actorChoice = function (event) {
@@ -149,6 +147,9 @@ function fetchActorInfo(actor) {
                      
                       searchResults.appendChild(movieResults);
                       movieResults.classList.add("card");
+                      
+
+                      
 
                       var posterDisplay = document.createElement('h2');
                       posterDisplay.innerHTML = '<a href="' + filminfo.sources[m].web_url + '"><img src="' + posterURL + '"></a>'
@@ -156,9 +157,27 @@ function fetchActorInfo(actor) {
                       posterDisplay.classList.add("card-img-top")
                       
                       var sourceIcon = document.createElement('div');
-
+                      movieResults.classList.add("draggable");
                       movieResults.append(sourceIcon);
                       
+                      $ (function(){
+                        $('.draggable').draggable({revert : "valid"});
+                        
+              
+                          $('#droppable').droppable({
+                            classes: {
+                            "ui-droppable-active": "ui-state-active",
+                            "ui-droppable-hover": "ui-state-hover"},
+                            drop: function(event){
+                              
+                              
+                              
+                            }
+                            })
+                          });
+                        
+                        
+
                       if (sourceID===157) {
                         sourceIcon.innerHTML= '<img src="assets/hulu.png">'
                       }
@@ -206,8 +225,7 @@ function fetchActorInfo(actor) {
 })
 
     }
-
-
-
+    
+    
    
 searchBtn.addEventListener('click', actorChoice);
