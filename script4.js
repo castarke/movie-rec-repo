@@ -74,7 +74,6 @@ function createSearchHistory() {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
-    
     newActor.addEventListener("click", () => {
       
       streamingUser = [];
@@ -103,6 +102,10 @@ function createSearchHistory() {
 
 createSearchHistory();
 
+function arrayIsEmpty(arr) {
+  return !Array.isArray(arr) || arr.length === 0;
+}
+// 
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
   var actorFile =
