@@ -15,9 +15,20 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "fnQF7cIzL9GDnQfOrDrr4M8yKPkTwywAkoF2ArgH";
+var apiKey = "9xc9pEYXGOQ7Y0ji4z9vu0SwRb2JrcvGOFpeQMuD";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
+
+//Page will load saved videos
+$(document).ready(function () {
+  var displayList = document.querySelector('#saved-list');
+  var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+  for (var i = 0; i < storedMovies.length; i++) {
+  var savedMovie = document.createElement('li');
+  savedMovie.innerHTML ='<a href="'+storedMovies[i].link +'" target="_blank" rel="noopener noreferrer">'+storedMovies[i].title+'</a>';
+  displayList.appendChild(savedMovie);
+  }})
+
 var actorChoice = function (event) {
   event.preventDefault();
   streamingUser = [];
@@ -208,6 +219,7 @@ function fetchActorInfo(actor) {
                       var originalTitle = filminfo.title;
                       var userRating = filminfo.user_rating;
                       var releaseDate = filminfo.year;
+                      var filmLink =filminfo.sources[m].web_url
 
                       var titleSpan = document.createElement("span");
                       titleSpan.style.display = "block";
@@ -260,10 +272,14 @@ function fetchActorInfo(actor) {
                                             
                       saveBtn.addEventListener('click', function () {
                         var savedMovArray = JSON.parse(localStorage.getItem('savedMovies')) || [];
-                        if (savedMovArray.includes(originalTitle)) {
+                        var savedMoviesb =[]
+                        for (var j =0; j < savedMovArray; j++){
+                          savedMoviesb.push(savedMovArray[j].title)
+                        }
+                        if (savedMoviesb.includes(originalTitle)) {
                           return;
                         } else {
-                          savedMovArray.push(originalTitle);
+                          savedMovArray.push({ title: originalTitle, link: filmLink});
                         }
                         localStorage.setItem('savedMovies', JSON.stringify(savedMovArray));
                         console.log(savedMovArray);
@@ -273,12 +289,12 @@ function fetchActorInfo(actor) {
                     function createWatchList() {
                       var displayList = document.querySelector('#saved-list');
                       var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+                      displayList.innerHTML=""
                       for (var i = 0; i < storedMovies.length; i++) {
                       var savedMovie = document.createElement('li');
-                      savedMovie.textContent = storedMovies[i];
+                      savedMovie.innerHTML ='<a href="'+storedMovies[i].link +'" target="_blank" rel="noopener noreferrer">'+storedMovies[i].title+'</a>';
                       displayList.appendChild(savedMovie);
-                    }}
-                    
+                    }}                    
                   }
                 }
               });

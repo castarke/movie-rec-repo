@@ -14,6 +14,15 @@ body {
     margin-right: 200px;
   }
 
+  .check-box {
+    size: 150%;
+  }
+
+  .form-check-label {
+    font-size: larger;
+    margin-right: 10px;
+  }
+
   header {
     font-size: 35px;
     text-align: center;
