@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "gW1RCkXBwKIC7skk1fs7XiIrtx3RX9qwTilm2AF0";
+var apiKey = "Z3bEdMnXEt5qA14cngT19PzT4zVmvYD4HprII56W";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 var actorChoice = function (event) {
@@ -81,6 +81,9 @@ function createSearchHistory() {
         return;
       }
       fetchActorInfo(actor);
+      $("#showingResults").text(
+        "Showing Current Results for " + decodeURIComponent(actor)
+      );
     });
     
     searchHistory.appendChild(newActor);
