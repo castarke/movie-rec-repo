@@ -271,8 +271,7 @@ function fetchActorInfo(actor) {
                       var savedMovie = document.createElement('li');
                       savedMovie.textContent = storedMovies[i];
                       displayList.appendChild(savedMovie);
-                    }}
-                    
+                    }}                    
                   }
                 }
               });
