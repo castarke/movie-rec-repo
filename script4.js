@@ -119,10 +119,11 @@ function createSearchHistory() {
 createSearchHistory();
 
 
+
 function arrayIsEmpty(arr) {
   return !Array.isArray(arr) || arr.length === 0;
 }
-//
+
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
   var actorFile =
@@ -326,6 +327,7 @@ function fetchActorInfo(actor) {
                       var displayList = document.querySelector('#saved-list');
                       var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
                       displayList.innerHTML=""
+
                       var savesMoviec=storedMovies.reverse();
                       for(var k =0; k < 3; k++){
                       var savedMovie = document.createElement('div');
@@ -336,6 +338,7 @@ function fetchActorInfo(actor) {
                       savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
                       displayList.appendChild(savedMovielink);
                       }
+
                     }}                    
                   }
                 }
