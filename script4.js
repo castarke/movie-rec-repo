@@ -15,29 +15,36 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "aQuZhRdpDVzGYCVwZOSivjjSGFx4brJ7X290vbXK";
+var apiKey = "4D3iqy3q5BOBrSzT2hAnJJRCJZnqH9umOMpiEzvA";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 
-
 //Page will load saved videos
 $(document).ready(function () {
-  var displayList = document.querySelector('#saved-list');
-  var storedMovies = JSON.parse(localStorage.getItem('savedMovies')) || [];
-  var savesMoviec=storedMovies.reverse();
-  for(var k =0; k < 3; k++){
-  var savedMovie = document.createElement('div');
-  savedMovie.innerHTML ='<a href="'+savesMoviec[k].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[k].poster +'"></a>';
-  displayList.appendChild(savedMovie);}
-  for(var b =3; b < savesMoviec.length; b++){
-    var savedMovielink = document.createElement('li');
-    savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
+  var displayList = document.querySelector("#saved-list");
+  var storedMovies = JSON.parse(localStorage.getItem("savedMovies")) || [];
+  var savesMoviec = storedMovies.reverse();
+  for (var k = 0; k < 3; k++) {
+    var savedMovie = document.createElement("div");
+    savedMovie.innerHTML =
+      '<a href="' +
+      savesMoviec[k].link +
+      '" target="_blank" rel="noopener noreferrer"><img src="' +
+      savesMoviec[k].poster +
+      '"></a>';
+    displayList.appendChild(savedMovie);
+  }
+  for (var b = 3; b < savesMoviec.length; b++) {
+    var savedMovielink = document.createElement("li");
+    savedMovielink.innerHTML =
+      '<a href="' +
+      savesMoviec[b].link +
+      '" target="_blank" rel="noopener noreferrer"><img src="' +
+      savesMoviec[b].title +
+      '"></a>';
     displayList.appendChild(savedMovielink);
   }
-})
-
-
-
+});
 
 var actorChoice = function (event) {
   event.preventDefault();
@@ -57,9 +64,7 @@ var actorChoice = function (event) {
   }
   var actorChoice = encodeURIComponent(actorValue.value);
 
-
   console.log("this is my actor choice:", actorChoice);
-
 
   // will not save to local storage is name is already entered
   if (!previousActorArray.includes(actorChoice)) {
@@ -75,28 +80,24 @@ var actorChoice = function (event) {
     createSearchHistory();
   }
 
-
   fetchActorInfo(actorChoice);
 };
 
-
 // creating a search history that has clickable actor names
 function createSearchHistory() {
-  streamingUser=[];
+  streamingUser = [];
   searchHistory.innerHTML = "";
   previousActorArray.forEach((actor) => {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
     newActor.addEventListener("click", () => {
-     
       streamingUser = [];
       for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
           streamingUser.push(parseInt(checkboxes[i].value));
         }
       }
-
 
       if (streamingUser.length === 0) {
         searchResults.innerHTML = "";
@@ -110,15 +111,12 @@ function createSearchHistory() {
         "Showing Current Results for " + decodeURIComponent(actor)
       );
     });
-   
+
     searchHistory.appendChild(newActor);
   });
 }
 
-
 createSearchHistory();
-
-
 
 function arrayIsEmpty(arr) {
   return !Array.isArray(arr) || arr.length === 0;
@@ -136,16 +134,12 @@ function fetchActorInfo(actor) {
       return response.json();
     })
 
-
     .then(function (actorID) {
       console.log(actorID);
 
-
       var idNumber = actorID.people_results[0].tmdb_id;
 
-
       console.log("this is the actor id #:", idNumber);
-
 
       var film =
         "https://api.themoviedb.org/3/person/" +
@@ -156,21 +150,14 @@ function fetchActorInfo(actor) {
           return response.json();
         })
 
-
         .then(function (filmList) {
           // if (streamingChoices.length >= 5) {
           //   return
           // }
 
-
-
-
-       
           movieArray = [];
 
-
           console.log(filmList);
-
 
           for (var i = 0; i < 10 /*filmList.cast.length*/; i++) {
             // if (streamingChoices.length >= 5) {
@@ -180,9 +167,7 @@ function fetchActorInfo(actor) {
             //console.log('the actor was in this film:', filmList.cast[i].original_title);
             movieIDList.push(filmList.cast[i].id);
 
-
             //console.log(movieIDList)
-
 
             var titleStreaming =
               "https://api.watchmode.com/v1/title/movie-" +
@@ -212,30 +197,24 @@ function fetchActorInfo(actor) {
                       console.log(sourceID);
                       var movieTitle = document.createElement("h2");
 
-
                       searchResults.appendChild(movieResults);
-                     
+
                       movieResults.classList.add("card");
                       movieResults.classList.add("col");
                       movieResults.classList.add("draggable");
 
+                      $(function () {
+                        $(".draggable").draggable();
 
-                      $ (function(){
-                        $('.draggable').draggable();
-                       
-             
-                          $('#droppable').droppable({
-                            classes: {
+                        $("#droppable").droppable({
+                          classes: {
                             "ui-droppable-active": "ui-state-active",
-                            "ui-droppable-hover": "ui-state-hover"},
-                            drop: function(event){
-                             
-                             
-                             
-                            }
-                            })
-                          });
-                          //test
+                            "ui-droppable-hover": "ui-state-hover",
+                          },
+                          drop: function (event) {},
+                        });
+                      });
+                      //test
                       var posterDisplay = document.createElement("h2");
                       posterDisplay.innerHTML =
                         '<a href="' +
@@ -246,17 +225,16 @@ function fetchActorInfo(actor) {
                       movieResults.append(posterDisplay);
                       posterDisplay.classList.add("card-img-top");
 
-
                       // Adding Title, Runtime, and (main) Genre
                       var originalTitle = filminfo.title;
                       var userRating = filminfo.user_rating;
                       var releaseDate = filminfo.year;
-                      var filmLink =filminfo.sources[m].web_url
-
+                      var filmLink = filminfo.sources[m].web_url;
 
                       var titleSpan = document.createElement("span");
                       titleSpan.style.display = "block";
-                      titleSpan.textContent = originalTitle + "\n"+ "(" +releaseDate+ ")";
+                      titleSpan.textContent =
+                        originalTitle + "\n" + "(" + releaseDate + ")";
                       movieResults.appendChild(titleSpan);
                       var ratingSpan = document.createElement("span");
                       ratingSpan.style.display = "block";
@@ -265,9 +243,7 @@ function fetchActorInfo(actor) {
                       //
                       var sourceIcon = document.createElement("div");
 
-
                       movieResults.append(sourceIcon);
-
 
                       if (sourceID === 157) {
                         sourceIcon.innerHTML = '<img src="assets/hulu.png">';
@@ -299,54 +275,74 @@ function fetchActorInfo(actor) {
                           '<img src="assets/crunchyroll.png">';
                       }
 
-
                       // save movie choice to local storage
-                      var saveBtn = document.createElement('button');
+                      var saveBtn = document.createElement("button");
                       saveBtn.textContent = "Save";
 
+                      movieResults.append(saveBtn);
 
-                      movieResults.append(saveBtn);            
-                                           
-                      saveBtn.addEventListener('click', function () {
-                        var savedMovArray = JSON.parse(localStorage.getItem('savedMovies')) || [];
-                        var savedMoviesb =[]
-                        for (var j =0; j < savedMovArray; j++){
-                          savedMoviesb.push(savedMovArray[j].title)
+                      saveBtn.addEventListener("click", function () {
+                        var savedMovArray =
+                          JSON.parse(localStorage.getItem("savedMovies")) || [];
+                        var savedMoviesb = [];
+                        for (var j = 0; j < savedMovArray; j++) {
+                          savedMoviesb.push(savedMovArray[j].title);
                         }
                         if (savedMoviesb.includes(originalTitle)) {
                           return;
                         } else {
-                          savedMovArray.push({ title: originalTitle, link: filmLink, poster:posterURL});
+                          savedMovArray.push({
+                            title: originalTitle,
+                            link: filmLink,
+                            poster: posterURL,
+                          });
                         }
-                        localStorage.setItem('savedMovies', JSON.stringify(savedMovArray));
+                        localStorage.setItem(
+                          "savedMovies",
+                          JSON.stringify(savedMovArray)
+                        );
                         console.log(savedMovArray);
                         createWatchList();
-                      })
+                      });
                     }
                     function createWatchList() {
-                      var displayList = document.querySelector('#saved-list');
-                      var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-                      displayList.innerHTML=""
+                      var displayList = document.querySelector("#saved-list");
+                      var storedMovies = JSON.parse(
+                        localStorage.getItem("savedMovies")
+                      );
+                      displayList.innerHTML = "";
 
-                      var savesMoviec=storedMovies.reverse();
-                      for(var k =0; k < 3; k++){
-                      var savedMovie = document.createElement('div');
-                      savedMovie.innerHTML ='<a href="'+savesMoviec[k].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[k].poster +'"></a>';
-                      displayList.appendChild(savedMovie);}
-                      for(var b =3; b < savesMoviec.length; b++){
-                      var savedMovielink = document.createElement('li');
-                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
-                      displayList.appendChild(savedMovielink);
+                      var savesMoviec = storedMovies.reverse();
+                      for (var k = 0; k < 3; k++) {
+                        var savedMovie = document.createElement("div");
+                        savedMovie.innerHTML =
+                          '<a href="' +
+                          savesMoviec[k].link +
+                          '" target="_blank" rel="noopener noreferrer"><img src="' +
+                          savesMoviec[k].poster +
+                          '"></a>';
+                        displayList.appendChild(savedMovie);
                       }
-
-                    }}                    
+                      for (var b = 3; b < savesMoviec.length; b++) {
+                        var savedMovielink = document.createElement("li");
+                        savedMovielink.innerHTML =
+                          '<a href="' +
+                          savesMoviec[b].link +
+                          '" target="_blank" rel="noopener noreferrer"><img src="' +
+                          savesMoviec[b].title +
+                          '"></a>';
+                        displayList.appendChild(savedMovielink);
+                      }
+                    }
                   }
                 }
-    )}});
-          })
-        };
-     
-   /* .then(function () {
+              });
+          }
+        });
+    });
+}
+
+/* .then(function () {
       if (arrayIsEmpty(streamingChoices)) {
         var noOptions = document.createElement("h2");
         noOptions.textContent = "No streaming options found";
@@ -355,7 +351,4 @@ function fetchActorInfo(actor) {
     });
 }*/
 
-
 searchBtn.addEventListener("click", actorChoice);
-
-
