@@ -15,11 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-<<<<<<< HEAD
-var apiKey = "Z3bEdMnXEt5qA14cngT19PzT4zVmvYD4HprII56W";
-=======
 var apiKey = "fnQF7cIzL9GDnQfOrDrr4M8yKPkTwywAkoF2ArgH";
->>>>>>> 9331dfe83420437b0666c13cd0e73653d312e739
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 var actorChoice = function (event) {
@@ -67,7 +63,6 @@ function createSearchHistory() {
     var newActor = document.createElement("button");
     newActor.classList.add("search-history-item", "btn-group");
     newActor.textContent = decodeURIComponent(actor);
-    
     newActor.addEventListener("click", () => {
       
       streamingUser = [];
@@ -96,6 +91,10 @@ function createSearchHistory() {
 
 createSearchHistory();
 
+function arrayIsEmpty(arr) {
+  return !Array.isArray(arr) || arr.length === 0;
+}
+// 
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
   var actorFile =
