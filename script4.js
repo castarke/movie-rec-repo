@@ -335,8 +335,7 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovie);}
                       for(var b =3; b < savesMoviec.length; b++){
                       var savedMovielink = document.createElement('li');
-                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
-                      displayList.appendChild(savedMovielink);
+                      savedMovielink.innerHTML ='<a href="' + savesMoviec[k].link + '">' + savesMoviec[k].title + '</a>';
                       }
 
                     }}                    
