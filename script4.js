@@ -74,7 +74,12 @@ var actorChoice = function (event) {
     // runs search history so the history doesn't only show up when page is reloaded
     $("#showingResults").text(
       "Showing Current Results for " + decodeURIComponent(actorChoice)
-    ); //Need to fix this so it will fix displayed actors when switching back and to a different previously searched actor
+    ); 
+    if(streamingChoices.length===0){
+      var noOptions = document.createElement("h2");
+        noOptions.textContent = "No streaming options found";
+        searchHistory.appendChild(noOptions);
+    }
     createSearchHistory();
   }
 
@@ -112,6 +117,11 @@ function createSearchHistory() {
       $("#showingResults").text(
         "Showing Current Results for " + decodeURIComponent(actor)
       );
+      if(streamingChoices.length===0){
+        var noOptions = document.createElement("h2");
+          noOptions.textContent = "No streaming options found";
+          searchHistory.appendChild(noOptions);
+      }
     });
    
     searchHistory.appendChild(newActor);
@@ -209,11 +219,7 @@ function fetchActorInfo(actor) {
                       });
                       console.log(streamingChoices);
 
-                      if(streamingChoices.length===0){
-                        var noOptions = document.createElement("h2");
-                          noOptions.textContent = "No streaming options found";
-                          searchHistory.appendChild(noOptions);
-                      }
+                      
 
 
                       var movieResults = document.createElement("div");
@@ -344,12 +350,12 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovie);}
                       for(var b =3; b < savesMoviec.length; b++){
                       var savedMovielink = document.createElement('li');
-                      savedMovielink.innerHTML ='<a href="' + savesMoviec[b].link + '">' + savesMoviec[b].title + '</a>';
+                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
+                      displayList.appendChild(savedMovielink);
                       }
 
                     }}                    
-                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
-                      displayList.appendChild(savedMovielink);
+                      
                       }})
 
                     }                  
