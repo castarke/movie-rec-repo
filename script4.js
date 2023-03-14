@@ -344,28 +344,26 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovie);}
                       for(var b =3; b < savesMoviec.length; b++){
                       var savedMovielink = document.createElement('li');
+                      savedMovielink.innerHTML ='<a href="' + savesMoviec[b].link + '">' + savesMoviec[b].title + '</a>';
+                      }
+
+                    }}                    
                       savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
                       displayList.appendChild(savedMovielink);
-                      }}
+                      }})
 
                     }                  
-                  }
+                  })
                 });
-    }});
-          })
+    };
+          
           console.log(streamingChoices);
          
             
           
      
-    // .then(function () {
-    //   if (arrayIsEmpty(streamingChoices)) {
-    //     var noOptions = document.createElement("h2");
-    //     noOptions.textContent = "No streaming options found";
-    //     searchHistory.appendChild(noOptions);
-    //   }
-    // });
-  }
+  
+  
   
 
 searchBtn.addEventListener("click", actorChoice);
