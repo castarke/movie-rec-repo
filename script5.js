@@ -20,6 +20,8 @@ var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 
 
+
+
 //Page will load saved videos
 $(document).ready(function () {
   var displayList = document.querySelector('#saved-list');
@@ -37,11 +39,15 @@ $(document).ready(function () {
     displayList.appendChild(savedMovielink);
   }
 
+
 })
 
 
 
 
+
+
+//function picks up actor from searchbox and streaming choices from checkboxes
 var actorChoice = function (event) {
   event.preventDefault();
   streamingUser = [];
@@ -61,7 +67,11 @@ var actorChoice = function (event) {
   var actorChoice = encodeURIComponent(actorValue.value);
 
 
+
+
   console.log("this is my actor choice:", actorChoice);
+
+
 
 
   // will not save to local storage is name is already entered
@@ -74,7 +84,7 @@ var actorChoice = function (event) {
     // runs search history so the history doesn't only show up when page is reloaded
     $("#showingResults").text(
       "Showing Current Results for " + decodeURIComponent(actorChoice)
-    ); 
+    );
     // if(streamingChoices.length===0){
     //   var noOptions = document.createElement("h2");
     //     noOptions.textContent = "No streaming options found";
@@ -84,8 +94,12 @@ var actorChoice = function (event) {
   }
 
 
+
+
   fetchActorInfo(actorChoice);
 };
+
+
 
 
 // creating a search history that has clickable actor names
@@ -104,6 +118,8 @@ function createSearchHistory() {
           streamingUser.push(parseInt(checkboxes[i].value));
         }
       }
+
+
 
 
       if (streamingUser.length === 0) {
@@ -129,12 +145,18 @@ function createSearchHistory() {
 }
 
 
+
+
 createSearchHistory();
 
 
 
 
 
+
+
+
+// function finds actor ID from actor name
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
   var actorFile =
@@ -148,16 +170,23 @@ function fetchActorInfo(actor) {
     })
 
 
+
+
     .then(function (actorID) {
       console.log(actorID);
+
+
 
 
       var idNumber = actorID.people_results[0].tmdb_id;
 
 
+
+
       console.log("this is the actor id #:", idNumber);
 
 
+// searches filmography using actorID
       var film =
         "https://api.themoviedb.org/3/person/" +
         idNumber +
@@ -168,10 +197,14 @@ function fetchActorInfo(actor) {
         })
 
 
+
+
         .then(function (filmList) {
-          // if (streamingChoices.length >= 5) {
-          //   return
-          // }
+         
+
+
+
+
 
 
 
@@ -180,24 +213,29 @@ function fetchActorInfo(actor) {
           movieArray = [];
 
 
+
+
           console.log(filmList);
 
 
+// Searches through 10 random movies from filmography to pull details
           for (var i = 0; i < 10 /*filmList.cast.length*/; i++) {
-            // if (streamingChoices.length >= 5) {
-            //   return;
-            // }
+           var r = Math.floor(Math.random()*filmList.cast.length)
+           
             movieArray.push(filmList.cast[i].original_title);
-            //console.log('the actor was in this film:', filmList.cast[i].original_title);
             movieIDList.push(filmList.cast[i].id);
 
 
-            //console.log(movieIDList)
+
+
+           
+
+
 
 
             var titleStreaming =
               "https://api.watchmode.com/v1/title/movie-" +
-              filmList.cast[i].id +
+              filmList.cast[r].id +
               "/details/?apiKey=" +
               apiKey +
               "&append_to_response=sources";
@@ -205,6 +243,7 @@ function fetchActorInfo(actor) {
               .then(function (response) {
                 return response.json();
               })
+// Sees if the movies match subscription services available
               .then(function (filminfo) {
                 console.log(filminfo);
                 for (var m = 0; m < filminfo.sources.length; m++) {
@@ -219,13 +258,17 @@ function fetchActorInfo(actor) {
                       });
                       console.log(streamingChoices);
 
-                      
+
+                     
 
 
+//creates elements on the page to display details of the film
                       var movieResults = document.createElement("div");
                       var posterURL = filminfo.poster;
                       console.log(sourceID);
                       var movieTitle = document.createElement("h2");
+
+
 
 
                       searchResults.appendChild(movieResults);
@@ -235,6 +278,7 @@ function fetchActorInfo(actor) {
                       movieResults.classList.add("draggable");
 
 
+//creates draggable card
                       $ (function(){
                         $('.draggable').draggable();
                        
@@ -262,11 +306,15 @@ function fetchActorInfo(actor) {
                       posterDisplay.classList.add("card-img-top");
 
 
+
+
                       // Adding Title, Runtime, and (main) Genre
                       var originalTitle = filminfo.title;
                       var userRating = filminfo.user_rating;
                       var releaseDate = filminfo.year;
                       var filmLink =filminfo.sources[m].web_url
+
+
 
 
                       var titleSpan = document.createElement("span");
@@ -281,7 +329,11 @@ function fetchActorInfo(actor) {
                       var sourceIcon = document.createElement("div");
 
 
+
+
                       movieResults.append(sourceIcon);
+
+
 
 
                       if (sourceID === 157) {
@@ -315,9 +367,13 @@ function fetchActorInfo(actor) {
                       }
 
 
+
+
                       // save movie choice to local storage
                       var saveBtn = document.createElement('button');
                       saveBtn.textContent = "Save";
+
+
 
 
                       movieResults.append(saveBtn);            
@@ -343,6 +399,7 @@ function fetchActorInfo(actor) {
                       var storedMovies = JSON.parse(localStorage.getItem('savedMovies'));
                       displayList.innerHTML=""
 
+
                       var savesMoviec=storedMovies.reverse();
                       for(var k =0; k < 3; k++){
                       var savedMovie = document.createElement('div');
@@ -354,24 +411,31 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovielink);
                       }
 
+
                     }}                    
-                      
+                     
                       }})
+
 
                     }                  
                   })
                 });
     };
-          
+         
           console.log(streamingChoices);
          
-            
-          
+           
+         
      
-  // 
-  
-  
+  //
+ 
+ 
+
 
 searchBtn.addEventListener("click", actorChoice);
+
+
+
+
 
 
