@@ -39,3 +39,6 @@ THEN I am again presented with the short list of movie options starring that act
 ## Mock-up
 The following screenshots demonstrate the application functionality:
 ![Screenshot_movie-rec-repo_index html](https://user-images.githubusercontent.com/122942796/224888976-2bfde4e5-0e09-4be1-b227-74e41b4c2757.png)
+
+## Link to the Deployed site
+https://castarke.github.io/movie-rec-repo/
