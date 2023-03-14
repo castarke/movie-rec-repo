@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "6tcldYWKeCHL10X1pfm83N3pQFpeSUPid47xcQT6";
+var apiKey = "epuf62GAcR1xjHchpE5IrIEP934x2cPVH8YisRe9";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 
@@ -75,11 +75,11 @@ var actorChoice = function (event) {
     $("#showingResults").text(
       "Showing Current Results for " + decodeURIComponent(actorChoice)
     ); 
-    if(streamingChoices.length===0){
-      var noOptions = document.createElement("h2");
-        noOptions.textContent = "No streaming options found";
-        searchHistory.appendChild(noOptions);
-    }
+    // if(streamingChoices.length===0){
+    //   var noOptions = document.createElement("h2");
+    //     noOptions.textContent = "No streaming options found";
+    //     searchHistory.appendChild(noOptions);
+    // }
     createSearchHistory();
   }
 
@@ -117,11 +117,11 @@ function createSearchHistory() {
       $("#showingResults").text(
         "Showing Current Results for " + decodeURIComponent(actor)
       );
-      if(streamingChoices.length===0){
-        var noOptions = document.createElement("h2");
-          noOptions.textContent = "No streaming options found";
-          searchHistory.appendChild(noOptions);
-      }
+      // if(streamingChoices.length===0){
+      //   var noOptions = document.createElement("h2");
+      //     noOptions.textContent = "No streaming options found";
+      //     searchHistory.appendChild(noOptions);
+      // }
     });
    
     searchHistory.appendChild(newActor);
