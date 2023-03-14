@@ -15,7 +15,7 @@ var streamingChoices = [];
 var streamingUser = [];
 var movieIDList = [];
 var searchResults = document.querySelector(".card-group");
-var apiKey = "aQuZhRdpDVzGYCVwZOSivjjSGFx4brJ7X290vbXK";
+var apiKey = "6tcldYWKeCHL10X1pfm83N3pQFpeSUPid47xcQT6";
 var streamingPossibility = [203, 157, 26, 372, 387, 444, 389, 80];
 var checkboxes = document.querySelectorAll(".checkbox");
 
@@ -26,14 +26,17 @@ $(document).ready(function () {
   var storedMovies = JSON.parse(localStorage.getItem('savedMovies')) || [];
   var savesMoviec=storedMovies.reverse();
   for(var k =0; k < 3; k++){
+    if(savesMoviec[k]){
   var savedMovie = document.createElement('div');
+  console.log(savesMoviec);
   savedMovie.innerHTML ='<a href="'+savesMoviec[k].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[k].poster +'"></a>';
-  displayList.appendChild(savedMovie);}
+  displayList.appendChild(savedMovie);}}
   for(var b =3; b < savesMoviec.length; b++){
     var savedMovielink = document.createElement('li');
-    savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
+    savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
     displayList.appendChild(savedMovielink);
   }
+
 })
 
 
@@ -120,9 +123,7 @@ createSearchHistory();
 
 
 
-function arrayIsEmpty(arr) {
-  return !Array.isArray(arr) || arr.length === 0;
-}
+
 
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
@@ -207,6 +208,14 @@ function fetchActorInfo(actor) {
                         poster: filminfo.poster,
                       });
                       console.log(streamingChoices);
+
+                      if(streamingChoices.length===0){
+                        var noOptions = document.createElement("h2");
+                          noOptions.textContent = "No streaming options found";
+                          searchHistory.appendChild(noOptions);
+                      }
+
+
                       var movieResults = document.createElement("div");
                       var posterURL = filminfo.poster;
                       console.log(sourceID);
@@ -335,26 +344,29 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovie);}
                       for(var b =3; b < savesMoviec.length; b++){
                       var savedMovielink = document.createElement('li');
-                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[b].title+'"></a>';
+                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
                       displayList.appendChild(savedMovielink);
-                      }
+                      }}
 
-                    }}                    
+                    }                  
                   }
-                }
-    )}});
+                });
+    }});
           })
-        };
+          console.log(streamingChoices);
+         
+            
+          
      
-   /* .then(function () {
-      if (arrayIsEmpty(streamingChoices)) {
-        var noOptions = document.createElement("h2");
-        noOptions.textContent = "No streaming options found";
-        searchHistory.appendChild(noOptions);
-      }
-    });
-}*/
-
+    // .then(function () {
+    //   if (arrayIsEmpty(streamingChoices)) {
+    //     var noOptions = document.createElement("h2");
+    //     noOptions.textContent = "No streaming options found";
+    //     searchHistory.appendChild(noOptions);
+    //   }
+    // });
+  }
+  
 
 searchBtn.addEventListener("click", actorChoice);
 
