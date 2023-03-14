@@ -26,14 +26,17 @@ $(document).ready(function () {
   var storedMovies = JSON.parse(localStorage.getItem('savedMovies')) || [];
   var savesMoviec=storedMovies.reverse();
   for(var k =0; k < 3; k++){
+    if(savesMoviec[k]){
   var savedMovie = document.createElement('div');
+  console.log(savesMoviec);
   savedMovie.innerHTML ='<a href="'+savesMoviec[k].link +'" target="_blank" rel="noopener noreferrer"><img src="'+savesMoviec[k].poster +'"></a>';
-  displayList.appendChild(savedMovie);}
+  displayList.appendChild(savedMovie);}}
   for(var b =3; b < savesMoviec.length; b++){
     var savedMovielink = document.createElement('li');
-    savedMovielink.innerHTML ='<a href="' + savesMoviec[b].link + '">' + savesMoviec[b].title + '</a>';
+    savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
     displayList.appendChild(savedMovielink);
   }
+
 })
 
 
@@ -71,7 +74,12 @@ var actorChoice = function (event) {
     // runs search history so the history doesn't only show up when page is reloaded
     $("#showingResults").text(
       "Showing Current Results for " + decodeURIComponent(actorChoice)
-    ); //Need to fix this so it will fix displayed actors when switching back and to a different previously searched actor
+    ); 
+    if(streamingChoices.length===0){
+      var noOptions = document.createElement("h2");
+        noOptions.textContent = "No streaming options found";
+        searchHistory.appendChild(noOptions);
+    }
     createSearchHistory();
   }
 
@@ -109,6 +117,11 @@ function createSearchHistory() {
       $("#showingResults").text(
         "Showing Current Results for " + decodeURIComponent(actor)
       );
+      if(streamingChoices.length===0){
+        var noOptions = document.createElement("h2");
+          noOptions.textContent = "No streaming options found";
+          searchHistory.appendChild(noOptions);
+      }
     });
    
     searchHistory.appendChild(newActor);
@@ -120,9 +133,7 @@ createSearchHistory();
 
 
 
-function arrayIsEmpty(arr) {
-  return !Array.isArray(arr) || arr.length === 0;
-}
+
 
 function fetchActorInfo(actor) {
   searchResults.innerHTML = "";
@@ -207,6 +218,10 @@ function fetchActorInfo(actor) {
                         poster: filminfo.poster,
                       });
                       console.log(streamingChoices);
+
+                      
+
+
                       var movieResults = document.createElement("div");
                       var posterURL = filminfo.poster;
                       console.log(sourceID);
@@ -335,25 +350,27 @@ function fetchActorInfo(actor) {
                       displayList.appendChild(savedMovie);}
                       for(var b =3; b < savesMoviec.length; b++){
                       var savedMovielink = document.createElement('li');
-                      savedMovielink.innerHTML ='<a href="' + savesMoviec[b].link + '">' + savesMoviec[b].title + '</a>';
+                      savedMovielink.innerHTML ='<a href="'+savesMoviec[b].link +'" target="_blank" rel="noopener noreferrer">'+savesMoviec[b].title+'</a>';
+                      displayList.appendChild(savedMovielink);
                       }
 
                     }}                    
-                  }
-                }
-    )}});
-          })
-        };
-     
-   /* .then(function () {
-      if (arrayIsEmpty(streamingChoices)) {
-        var noOptions = document.createElement("h2");
-        noOptions.textContent = "No streaming options found";
-        searchHistory.appendChild(noOptions);
-      }
-    });
-}*/
+                      
+                      }})
 
+                    }                  
+                  })
+                });
+    };
+          
+          console.log(streamingChoices);
+         
+            
+          
+     
+  
+  
+  
 
 searchBtn.addEventListener("click", actorChoice);
 
